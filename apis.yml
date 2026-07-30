@@ -1,7 +1,17 @@
 aid: locbox-labs
 name: LocBox Labs
-description: LocBox Labs is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  LocBox Labs is associated with Hownd, Inc. (formerly FetchRev), a Tempe,
+  Arizona automated promotions and local-merchant marketing platform that helps
+  restaurants, health and beauty businesses, family entertainment centers, and
+  retail merchants generate new and repeat customers. The platform runs
+  automated marketing across web popups, email drip campaigns, social media, a
+  MyHownd consumer mobile app, buy-now buttons, and guest-WiFi capture on a
+  pay-per-visit billing model. The merchant application runs at app.locbox.com.
+  This provider was surfaced as a 500 Global portfolio company and added to the
+  API Evangelist network. As of this enrichment pass no public API, developer
+  portal, SDK, or OpenAPI surface could be found on the provider's public
+  properties.
 url: https://raw.githubusercontent.com/api-evangelist/locbox-labs/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,11 +19,28 @@ x-backed-by:
 - 500-global
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+image: https://fetchrev.com/favicon.ico
 tags:
 - Company
+- Marketing
+- Promotions
+- Local Marketing
+- Small Business
+- Automation
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -21,5 +48,24 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/locbox-labs-domain-security.yml
 - type: Website
   url: https://fetchrev.com
+- type: Pricing
+  url: https://hownd.com/pricing/
+- type: Login
+  url: https://app.locbox.com/sign_in/
+- type: TermsOfService
+  url: https://fetchrev.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://fetchrev.com/privacy-policy/
+- type: Blog
+  url: https://why.fetchrev.com/blog
+- type: Support
+  url: https://fetchrev.com/contact/
+x-enrichment:
+  date: '2026-07-20'
+  status: minimal
+  artifacts_added: 1
+  pass: local-v1
