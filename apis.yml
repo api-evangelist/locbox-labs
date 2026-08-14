@@ -1,17 +1,22 @@
 aid: locbox-labs
 name: LocBox Labs
 description: >-
-  LocBox Labs is associated with Hownd, Inc. (formerly FetchRev), a Tempe,
-  Arizona automated promotions and local-merchant marketing platform that helps
-  restaurants, health and beauty businesses, family entertainment centers, and
-  retail merchants generate new and repeat customers. The platform runs
-  automated marketing across web popups, email drip campaigns, social media, a
-  MyHownd consumer mobile app, buy-now buttons, and guest-WiFi capture on a
-  pay-per-visit billing model. The merchant application runs at app.locbox.com.
-  This provider was surfaced as a 500 Global portfolio company and added to the
-  API Evangelist network. As of this enrichment pass no public API, developer
-  portal, SDK, or OpenAPI surface could be found on the provider's public
-  properties.
+  LocBox Labs is the engineering identity behind Hownd, Inc. (formerly FetchRev,
+  originally LocBox), a Tempe, Arizona automated promotions and local-merchant
+  marketing platform that helps restaurants, health and beauty businesses,
+  family entertainment centers, attractions and retail merchants generate new
+  and repeat customers. The platform runs automated marketing across website
+  popups, email drip and birthday campaigns, social media, buy-now promos,
+  gift cards, a promo discovery portal, the MyHownd consumer mobile app, and
+  guest-WiFi capture, billed at a flat monthly fee plus a share of each
+  transaction. Merchants work in the Hownd app at hownd.app, with the legacy
+  FetchRev merchant application still served at app.locbox.com. Hownd operates a
+  partner-gated REST API at partner-api.hownd.com that lets approved partners
+  manage subscribers on behalf of Hownd merchants; it is authenticated with
+  OAuth 2.0 client-credentials against the company's Auth0 tenant and scoped per
+  merchant with an X-Tenant-Id header. No OpenAPI, public API reference, or
+  developer portal is published for it — the only public documentation is the
+  first-party example repository in the company's LocBoxLabs GitHub org.
 url: https://raw.githubusercontent.com/api-evangelist/locbox-labs/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -20,20 +25,22 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 accessModel:
-  pricing: unknown
-  onboarding: unknown
+  pricing: paid
+  onboarding: sales
   trial: false
   try_now: false
   public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
-  method: derived
+  label: Partner-gated
+  confidence: medium
+  source:
+  - https://github.com/LocBoxLabs/hownd-examples
+  - https://hownd.com/pricing/
+  generated: '2026-08-13'
+  method: searched
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
-image: https://fetchrev.com/favicon.ico
+modified: '2026-08-13'
+image: https://s21429.pcdn.co/wp-content/uploads/2020/05/hownd-logo-blue.svg
 tags:
 - Company
 - Marketing
@@ -41,7 +48,39 @@ tags:
 - Local Marketing
 - Small Business
 - Automation
-apis: []
+- Coupons
+- Email Marketing
+- Loyalty
+- Guest WiFi
+- Family Entertainment
+- Restaurants
+apis:
+- name: Hownd Partner API
+  description: >-
+    A secured REST API that lets an approved Hownd partner manage Subscribers on
+    behalf of Hownd customers (merchants and businesses). Partners are issued
+    OAuth 2.0 client credentials and retrieve a bearer token from the company's
+    Auth0 tenant using the client_credentials grant with the audience
+    https://partner-api.hownd.com. Every call carries an X-Tenant-Id header that
+    identifies which Hownd merchant is being acted on. Hownd states the
+    credentials are server-to-server only and must not be used from a browser or
+    mobile application. Creating a subscriber requires an email address; first
+    name, last name and phone number are optional. No OpenAPI or public
+    reference is published; the surface is documented only by the first-party
+    example repository below.
+  humanURL: https://github.com/LocBoxLabs/hownd-examples
+  baseURL: https://partner-api.hownd.com
+  tags:
+  - Subscribers
+  - Partner API
+  - Marketing
+  properties:
+  - type: SourceCode
+    url: https://github.com/LocBoxLabs/hownd-examples
+  - type: Authentication
+    url: authentication/locbox-labs-authentication.yml
+  - type: Conventions
+    url: conventions/locbox-labs-conventions.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -51,21 +90,68 @@ common:
 - type: DomainSecurity
   url: security/locbox-labs-domain-security.yml
 - type: Website
-  url: https://fetchrev.com
+  url: https://hownd.com
+- type: Documentation
+  url: https://hownd.com/knowledge-base/
+- type: GettingStarted
+  url: https://hownd.com/quickstart/
+- type: GitHubOrganization
+  url: https://github.com/LocBoxLabs
 - type: Pricing
   url: https://hownd.com/pricing/
+- type: Plans
+  url: plans/locbox-labs-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/locbox-labs-rate-limits.yml
 - type: Login
-  url: https://app.locbox.com/sign_in/
+  url: https://hownd.app/sign-in/
 - type: TermsOfService
-  url: https://fetchrev.com/terms-of-service/
+  url: https://hownd.com/terms-of-service/
 - type: PrivacyPolicy
-  url: https://fetchrev.com/privacy-policy/
+  url: https://hownd.com/privacy-policy/
+- type: Compliance
+  url: https://hownd.com/data-protection-addendum/
 - type: Blog
-  url: https://why.fetchrev.com/blog
+  url: https://hownd.com/blog/
+- type: BlogRSS
+  url: https://hownd.com/feed/
 - type: Support
-  url: https://fetchrev.com/contact/
+  url: https://hownd.com/contact/
+- type: Packages
+  url: packages/locbox-labs-packages.yml
+- type: WellKnown
+  url: well-known/locbox-labs-well-known.yml
+- type: Authentication
+  url: authentication/locbox-labs-authentication.yml
+- type: Conventions
+  url: conventions/locbox-labs-conventions.yml
+- type: Conformance
+  url: conformance/locbox-labs-conformance.yml
+- type: Lifecycle
+  url: lifecycle/locbox-labs-lifecycle.yml
+- type: Components
+  url: components/locbox-labs-components.yml
+- type: LLMsTxt
+  url: llms/locbox-labs-llms.txt
 x-enrichment:
-  date: '2026-07-20'
-  status: minimal
-  artifacts_added: 1
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 12
   pass: local-v1
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    A real API was found this pass - the Hownd Partner API at
+    partner-api.hownd.com, documented only in the company's own
+    LocBoxLabs/hownd-examples repository - but no machine-readable contract is
+    published for it anywhere, and partner credentials plus a per-merchant
+    Tenant ID are issued by Hownd rather than self-served.
+  evidence:
+  - url: https://github.com/LocBoxLabs/hownd-examples
+    status: 200
+  - url: https://partner-api.hownd.com/openapi.json
+    status: 404
+  - url: https://hownd.auth0.com/.well-known/openid-configuration
+    status: 200
+  checked: '2026-08-13'
