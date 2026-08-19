@@ -1,0 +1,70 @@
+generated: '2026-08-13'
+method: searched
+source: live probes of hownd.com, hownd.app, trust.hownd.com, partner-api.hownd.com and the LocBoxLabs GitHub organization
+note: >-
+  Recorded absences, not gaps. Hownd publishes no versioning policy, no
+  deprecation policy, no SLA and no changelog for either its merchant platform
+  or its Partner API, and its status page has been switched off. Each of those is
+  stated here with the probe that established it.
+versioning:
+  scheme: none-published
+  current: null
+  docs: null
+  note: >-
+    The Partner API base URL is the bare host https://partner-api.hownd.com with
+    no version segment. A /v1/ probe returned 404. No version header or date
+    train is documented.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: unknown
+  note: >-
+    No deprecation or sunset policy is published, and RFC 8594 Sunset/Deprecation
+    header support could not be observed because the API is credential-gated. No
+    Deprecation pointer is emitted.
+sla:
+  url: null
+  uptime_target: null
+  published: false
+status_page:
+  url: null
+  published: false
+  probed: https://trust.hownd.com/
+  probe_result: >-
+    trust.hownd.com resolves to Atlassian Statuspage
+    (4zx0l1s2xkdz.stspg-customer.com), 302s to https://hownd.statuspage.io/, and
+    that page renders "Hownd Status - Page Inactive". The company provisioned a
+    status page and then deactivated it, so there is no operational status
+    surface today. No StatusPage pointer is emitted - a deactivated page is an
+    absence, not a presence.
+changelog:
+  url: null
+  published: false
+  note: >-
+    No product changelog, release-notes page or API version history exists on
+    hownd.com, hownd.app or in the LocBoxLabs GitHub organization.
+deprecated_operations: []
+brand_lifecycle:
+  note: >-
+    The company has run three brands over one codebase - LocBox, then FetchRev,
+    now Hownd. All three properties are still live: locbox.com 301s to
+    fetchrev.com; fetchrev.com remains a separate WordPress marketing site with
+    its own terms, privacy policy and knowledge base; hownd.com is the current
+    marketing site. The merchant application also exists twice, as the legacy
+    Rails app at app.locbox.com and the current Nuxt app at hownd.app. Nothing
+    on any property declares which of the older surfaces is deprecated.
+  observed:
+  - {url: 'https://locbox.com/', http_status: 200, final: 'https://fetchrev.com/'}
+  - {url: 'https://fetchrev.com/', http_status: 200}
+  - {url: 'https://app.locbox.com/', http_status: 200, final: 'https://app.locbox.com/en/sign_in'}
+  - {url: 'https://hownd.app/', http_status: 200}
+staleness_signals:
+- {signal: 'Partner API example repository last commit', value: '2022-07-20'}
+- {signal: 'only first-party npm package last published', value: '2018-10-17'}
+- {signal: 'status page state', value: 'inactive'}
+- {signal: 'FetchRev blog host why.fetchrev.com/blog', value: '404 - the Blog pointer previously recorded for this provider is dead'}
+x-evidence:
+- {url: 'https://trust.hownd.com/', http_status: 302, fetched: '2026-08-13'}
+- {url: 'https://hownd.statuspage.io/', http_status: 200, fetched: '2026-08-13', note: 'Page Inactive'}
+- {url: 'https://why.fetchrev.com/blog', http_status: 404, fetched: '2026-08-13'}
+- {url: 'https://locbox.com/', http_status: 200, fetched: '2026-08-13'}

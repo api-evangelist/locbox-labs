@@ -1,0 +1,42 @@
+generated: '2026-08-13'
+method: searched
+source: https://hownd.com/pricing/
+currency: USD
+plan_count: 1
+note: >-
+  Hownd publishes a single public price for the merchant platform. There is no
+  developer/API tier, no per-call pricing, and no published price for the Hownd
+  Partner API - partner access is arranged directly with Hownd and is not sold
+  from this page.
+plans:
+- name: Hownd
+  price: 247
+  currency: USD
+  period: month
+  billing: monthly
+  contract_required: false
+  setup_fee: 0
+  included: >-
+    Unlimited campaigns including buy nows, coupons, date collectors, birthday
+    drips and more.
+  usage_fee:
+    rate: 5
+    unit: percent
+    basis: per transaction
+    covers: credit card processing
+    note: >-
+      Hownd describes the 5% transaction fee as covering credit card processing
+      and as "one of the lowest in the industry."
+  quota: unlimited campaigns
+  overage: null
+  limits_documented: false
+  note: >-
+    Hownd states there are no hidden fees, no contracts and no upfront costs,
+    and that merchants keep the money from purchased but unclaimed promos.
+enterprise_contact_only: false
+signup:
+  self_service: false
+  path: demo request / book a demo
+  url: https://hownd.com/contact/
+x-evidence:
+- {url: 'https://hownd.com/pricing/', http_status: 200, fetched: '2026-08-13'}

@@ -1,0 +1,125 @@
+generated: '2026-08-13'
+method: searched
+source: live probes of every host named in apis.yml, the Hownd merchant app bundle, and the first-party hownd-examples repository
+note: >-
+  The only /.well-known/ documents Hownd serves are the OAuth 2.0 / OpenID
+  Connect discovery documents on hownd.auth0.com — the company's own dedicated
+  Auth0 tenant, which is the authorization server the first-party
+  LocBoxLabs/hownd-examples repository tells partners to call
+  (https://hownd.auth0.com/oauth/token, audience https://partner-api.hownd.com).
+  It is a delegated identity host rather than a hownd.com path, and that is
+  recorded explicitly here rather than implied. Every /.well-known/ path on the
+  marketing sites (hownd.com, fetchrev.com), on the merchant applications
+  (app.locbox.com, hownd.app) and on the API hosts (partner-api.hownd.com,
+  merchant-api.hownd.com, mobile-api.hownd.com, public-api.hownd.com) returned
+  404 or an SPA/marketing HTML shell. hownd.app is a Netlify single-page app
+  whose catch-all answers HTTP 200 with the same HTML for every path, including
+  every /.well-known/* probe — those 200s are recorded below as HTML shells, not
+  as documents.
+hosts:
+- host: https://hownd.auth0.com
+  role: authorization server (dedicated Auth0 tenant for Hownd)
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: locbox-labs-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: locbox-labs-oauth-authorization-server.json
+  - path: /.well-known/jwks.json
+    status: 200
+    content_type: application/json
+    file: null
+    note: JWKS fetched and confirmed to carry RSA signing keys for CN=hownd.auth0.com; not saved (key material rotates).
+- host: https://partner-api.hownd.com
+  role: partner REST API
+  documents:
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://hownd.com
+  role: marketing site (WordPress)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://fetchrev.com
+  role: legacy marketing site (WordPress)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://app.locbox.com
+  role: legacy FetchRev merchant application (Rails)
+  documents:
+  - {path: /.well-known/security.txt, status: 406}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://hownd.app
+  role: Hownd merchant application (Nuxt SPA on Netlify)
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    file: null
+    note: SPA catch-all — HTML shell, not a document. Treated as a miss.
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    file: null
+    note: SPA catch-all — HTML shell, not an agent card. Treated as a miss.
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: text/html
+    file: null
+    note: SPA catch-all — HTML shell, not an agent card. Treated as a miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html
+    file: null
+    note: SPA catch-all — HTML shell, not a document. Treated as a miss.
+  - path: /.well-known/api-catalog
+    status: 200
+    content_type: text/html
+    file: null
+    note: SPA catch-all — HTML shell, not a document. Treated as a miss.
+- host: https://merchant-api.hownd.com
+  role: backend for the Hownd merchant application (undocumented, not public)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+- host: https://mobile-api.hownd.com
+  role: backend for the MyHownd consumer mobile app (undocumented, not public)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+- host: https://public-api.hownd.com
+  role: promo short-link/redirect service (promos.myhownd.com CNAMEs here)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+security_txt: false
+agent_card: false

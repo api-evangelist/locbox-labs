@@ -1,0 +1,129 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://hownd.auth0.com/.well-known/openid-configuration,
+  https://github.com/LocBoxLabs/hownd-examples,
+  https://hownd.com/data-protection-addendum/, https://hownd.com/sub-processors/
+note: >-
+  Assertions below are grounded in documents that were actually fetched. Where a
+  standard could not be evaluated because Hownd publishes no OpenAPI and no API
+  reference, that is recorded as conforms:null (unknown) rather than false -
+  unknown and non-conforming are different facts.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    The Hownd Partner API is authorized with OAuth 2.0 client credentials
+    (RFC 6749 section 4.4). The company's own example code posts grant_type
+    client_credentials with client_id, client_secret and the audience
+    https://partner-api.hownd.com to https://hownd.auth0.com/oauth/token, and the
+    tenant's discovery document lists client_credentials in
+    grant_types_supported.
+- id: oauth2-client-credentials
+  conforms: true
+  evidence: https://github.com/LocBoxLabs/hownd-examples/blob/main/main.go
+- id: rfc6750-bearer-token
+  conforms: true
+  evidence: 'README instructs partners to send "Authorization: Bearer [token]".'
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: >-
+    https://hownd.auth0.com/.well-known/oauth-authorization-server returns 200
+    with a valid authorization-server metadata document.
+- id: oidc-discovery
+  conforms: true
+  evidence: >-
+    https://hownd.auth0.com/.well-known/openid-configuration returns 200 with
+    issuer, authorization_endpoint, token_endpoint, jwks_uri, userinfo_endpoint
+    and claims_supported.
+- id: oidc
+  conforms: true
+  evidence: >-
+    The tenant advertises the openid scope, id_token signing algorithms
+    (RS256/PS256/HS256) and a userinfo endpoint. Note this governs login to the
+    Hownd applications, not partner API authorization.
+- id: jwks-rfc7517
+  conforms: true
+  evidence: 'https://hownd.auth0.com/.well-known/jwks.json returns RSA signing keys for CN=hownd.auth0.com.'
+- id: pkce-rfc7636
+  conforms: true
+  evidence: 'code_challenge_methods_supported lists S256 and plain in the tenant discovery document.'
+- id: dpop-rfc9449
+  conforms: true
+  evidence: 'dpop_signing_alg_values_supported lists ES256 in the tenant discovery document (Auth0 platform capability).'
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI or Swagger document is published. Probed /openapi.json,
+    /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs, /docs and /redoc
+    on partner-api.hownd.com, merchant-api.hownd.com, mobile-api.hownd.com,
+    public-api.hownd.com, app.locbox.com, hownd.app, hownd.com and fetchrev.com.
+    Every one returned 404, a redirect, or an HTML shell.
+- id: graphql
+  conforms: false
+  evidence: '/graphql returned 404 on every API and application host probed.'
+- id: asyncapi
+  conforms: false
+  evidence: 'No AsyncAPI, event catalog or webhook documentation exists on any Hownd or FetchRev property.'
+- id: rfc9457-problem-details
+  conforms: null
+  evidence: >-
+    Unknown. No error reference is published and the API is credential-gated, so
+    no error body could be observed. Unauthenticated 404s from the host are the
+    Go net/http default in text/plain.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: '/.well-known/security.txt returned 404 (or an SPA shell) on every host probed.'
+- id: rfc8594-sunset-header
+  conforms: null
+  evidence: 'Unknown - no deprecation or versioning policy is published.'
+- id: a2a-agent-card
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json miss on every host.
+    The 200s returned by hownd.app are the Netlify SPA catch-all serving HTML.
+- id: mcp
+  conforms: false
+  evidence: 'No MCP server is published; /mcp 404s or returns the SPA shell on every host.'
+- id: gdpr
+  conforms: true
+  evidence: >-
+    Hownd publishes a Data Protection Addendum that incorporates the European
+    Commission's Standard Contractual Clauses, together with a named
+    sub-processor list (AWS, Google, HappyFox, Mailgun, Salesforce, Sisense,
+    Stripe, Typeform) with locations and purposes.
+  source: https://hownd.com/data-protection-addendum/
+- id: pci-dss
+  conforms: null
+  evidence: >-
+    Hownd does not handle card data directly - card payments and merchant
+    payouts run through Stripe, which is named as a sub-processor. Hownd itself
+    publishes no PCI attestation.
+- id: soc2
+  conforms: false
+  evidence: 'No SOC 2 report, trust centre, or certification page is published. trust.hownd.com resolves to a Statuspage that returns "Page Inactive".'
+- id: iso-27001
+  conforms: false
+  evidence: 'No ISO 27001 certification is published anywhere on the company surface.'
+- id: hipaa
+  conforms: false
+  evidence: 'No HIPAA claim is published.'
+certifications_published: []
+compliance_program:
+  published: true
+  documents:
+  - {name: Data Protection Addendum, url: 'https://hownd.com/data-protection-addendum/', includes: EU Standard Contractual Clauses}
+  - {name: Sub-processors, url: 'https://hownd.com/sub-processors/'}
+  - {name: Privacy Policy, url: 'https://hownd.com/privacy-policy/'}
+  - {name: Cookies Policy, url: 'https://hownd.com/cookies-policy/'}
+  - {name: Accessibility, url: 'https://hownd.com/accessibility/'}
+  certifications: []
+  note: >-
+    A published data-protection program with SCCs and a named sub-processor
+    list, but no third-party audit or certification of any kind.
+x-evidence:
+- {url: 'https://hownd.auth0.com/.well-known/openid-configuration', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://hownd.auth0.com/.well-known/oauth-authorization-server', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://hownd.com/data-protection-addendum/', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://hownd.com/sub-processors/', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://trust.hownd.com/', http_status: 302, fetched: '2026-08-13', note: 'redirects to hownd.statuspage.io which renders "Hownd Status - Page Inactive"'}

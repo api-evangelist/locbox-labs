@@ -1,0 +1,62 @@
+generated: '2026-08-13'
+method: searched
+source: npm, PyPI, RubyGems, Packagist, crates.io registry searches plus the LocBoxLabs GitHub organization
+note: >-
+  Hownd ships NO client SDK for the Hownd Partner API in any language. The
+  partner integration path is raw HTTP - the company's only published client
+  code is a single Go file in LocBoxLabs/hownd-examples that fetches an Auth0
+  token with net/http. The one first-party package that does exist on a public
+  registry is an icon font for the company's own web front end, not an API
+  client, so no SDKs pointer is emitted for this provider.
+packages:
+- language: javascript
+  registry: npm
+  name: fetchrev-icons
+  url: https://www.npmjs.com/package/fetchrev-icons
+  install: npm install fetchrev-icons
+  repository: https://github.com/LocBoxLabs/icon-font
+  official: true
+  kind: design-asset
+  api_client: false
+  version: 1.0.1
+  published: '2018-10-17'
+  license: ISC
+  note: >-
+    "Icon Font for use at FetchRev and Hownd." Published from the company's own
+    LocBoxLabs GitHub org, so first-party, but it is a design asset with no API
+    surface. Two versions ever published (1.0.0 and 1.0.1, both on 2018-10-17);
+    nothing has shipped in the seven-plus years since, which is a decay signal
+    for the front-end toolchain, not for the Partner API.
+- language: go
+  registry: null
+  name: hownd-examples
+  url: https://github.com/LocBoxLabs/hownd-examples
+  install: git clone https://github.com/LocBoxLabs/hownd-examples
+  official: true
+  kind: example-code
+  api_client: false
+  version: null
+  published: '2022-07-20'
+  note: >-
+    Not a package - there is no go.mod and it is not published to a module
+    proxy, so proxy.golang.org has no metadata to return (version recorded as
+    null, checked). It is a single main.go showing the Auth0 client-credentials
+    token exchange, plus the README that is the only public documentation of the
+    Hownd Partner API. Last commit 2022-07-20; unchanged since.
+registries_checked:
+- {registry: npm, query: 'hownd', result: 'only fetchrev-icons'}
+- {registry: npm, query: 'locbox', result: 'only fetchrev-icons'}
+- {registry: npm, query: 'fetchrev', result: 'only fetchrev-icons'}
+- {registry: npm, query: '@hownd/*', result: 'no scope'}
+- {registry: pypi, query: 'hownd', result: '404'}
+- {registry: pypi, query: 'locbox', result: '404'}
+- {registry: pypi, query: 'fetchrev', result: '404'}
+- {registry: rubygems, query: 'hownd', result: 'not found'}
+- {registry: rubygems, query: 'locbox', result: 'not found'}
+- {registry: rubygems, query: 'fetchrev', result: 'not found'}
+- {registry: packagist, query: 'hownd', result: 'no first-party match'}
+- {registry: crates.io, query: 'hownd', result: 'no result (registry rate-limited the search endpoint)'}
+official_sdk_count: 0
+x-evidence:
+- {url: 'https://registry.npmjs.org/fetchrev-icons', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://api.github.com/orgs/LocBoxLabs/repos', http_status: 200, fetched: '2026-08-13', note: '18 public repos, 15 of them forks of third-party Ruby gems'}

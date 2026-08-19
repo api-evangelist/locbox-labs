@@ -1,0 +1,29 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/LocBoxLabs/hownd-examples
+limit_count: 0
+note: >-
+  Hownd documents no rate limits for the Hownd Partner API. The only public
+  documentation of the API - the README in the company's own hownd-examples
+  repository - covers authentication, the X-Tenant-Id header and the Subscribers
+  field contract, and says nothing about throttling, quotas, burst allowances or
+  429 behaviour. There is no developer portal, no API reference and no OpenAPI
+  in which limits could be declared. Nothing could be observed at runtime either:
+  the API requires partner-issued client credentials, so no authenticated request
+  was made, and unauthenticated probes of the host return the Go default 404 with
+  no rate-limit headers on the response.
+limits: []
+response_headers:
+  documented: []
+  observed: []
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header was present on any
+    response observed from partner-api.hownd.com.
+exhaustion_status: null
+searched:
+- {url: 'https://github.com/LocBoxLabs/hownd-examples', http_status: 200, result: 'no rate-limit content'}
+- {url: 'https://hownd.com/knowledge-base/', http_status: 200, result: 'merchant help centre only; no API content'}
+- {url: 'https://hownd.com/kb-sitemap.xml', http_status: 200, result: '110 KB articles enumerated; none covers an API, rate limit or developer topic'}
+x-evidence:
+- {url: 'https://partner-api.hownd.com/', http_status: 404, fetched: '2026-08-13'}
+- {url: 'https://hownd.com/kb-sitemap.xml', http_status: 200, fetched: '2026-08-13'}

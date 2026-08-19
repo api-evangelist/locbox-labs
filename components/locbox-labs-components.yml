@@ -1,0 +1,56 @@
+generated: '2026-08-13'
+method: searched
+source: https://hownd.com/kb/how-do-i-install-the-website-plugin/
+note: >-
+  Hownd's only developer-facing surface that a merchant can self-serve is a
+  client-side embed. It is a single script tag, issued per merchant account from
+  the Plugin Area of the merchant application, that renders Hownd promo popups on
+  the merchant's own website. It is distinct from the credential-gated Hownd
+  Partner API and it is the surface most Hownd merchants actually integrate.
+component_families:
+- name: Website Plugin (promo popup)
+  kind: script-embed
+  loader: >-
+    <script type='text/javascript'
+    src='https://app.locbox.com/website_plugins/lb-<account-token>.js'></script>
+  host: app.locbox.com
+  path_pattern: /website_plugins/lb-<account-token>.js
+  versioned: false
+  token_scope: per merchant account
+  provisioning: >-
+    The merchant copies their own install code from the Plugin Area of the
+    merchant application ("View Install Code"). There is no public generator and
+    no API for issuing one.
+  configuration: >-
+    Configured entirely server-side in the merchant account - which offers show,
+    popup frequency and popup priority are set in the application, not as script
+    attributes. No documented JS API, init options, callbacks or events.
+  constraints:
+  - Only one plugin per page; two plugins on the same page overlap.
+  - Placed in the header or footer for site-wide display, or near the bottom of the body for homepage-only display.
+  docs:
+  - https://hownd.com/kb/how-do-i-install-the-website-plugin/
+  - https://hownd.com/kb/how-do-i-install-the-website-plugin-on-wix-wordpress-or-godaddy/
+  - https://hownd.com/kb/how-do-i-update-change-the-offers-on-my-website-plugin/
+  - https://hownd.com/kb/where-can-i-change-the-plugin-pop-up-frequency/
+  - https://hownd.com/kb/how-does-the-hownd-website-popup-work/
+  - https://fetchrev.com/kb/install-fetchrev-website-plugin/
+  platform_guides: [Wix, WordPress, GoDaddy]
+- name: Promo Discovery Portal embed
+  kind: hosted-page
+  host: promos.myhownd.com
+  note: >-
+    The consumer-facing promo portal is served from promos.myhownd.com, which
+    CNAMEs to public-api.hownd.com. hownd.com carries a "Promo Portal Embed Test"
+    page at /promo-embed/, but it ships no embed code, iframe or script in the
+    served HTML, so no embed contract is recorded for it.
+  docs:
+  - https://hownd.com/promo-discovery-portal/
+  status: no-published-embed-contract
+loader_libraries: []
+npm_distribution: false
+x-evidence:
+- {url: 'https://hownd.com/kb/how-do-i-install-the-website-plugin/', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://fetchrev.com/kb/install-fetchrev-website-plugin/', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://app.locbox.com/website_plugins/lb-ed27a8cd82f3cd723f4b2d40d74583a10992d162.js', http_status: 200, content_type: 'text/javascript', size: 0, fetched: '2026-08-13', note: 'the sample token published in the docs resolves and is served as JavaScript, but returns an empty body - the endpoint is live, that account has no active plugin payload'}
+- {url: 'https://hownd.com/promo-embed/', http_status: 200, fetched: '2026-08-13', note: 'no iframe or script embed present in served HTML'}

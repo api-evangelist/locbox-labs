@@ -42,6 +42,21 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-LocBox Labs is a company surfaced as a portfolio company of 500-global and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+LocBox Labs is the engineering identity behind Hownd, Inc. (formerly FetchRev, originally LocBox), a
+Tempe, Arizona automated promotions and local-merchant marketing platform. It was surfaced as a
+500 Global portfolio company and added to the API Evangelist network.
 
-Backed by: 500-global — https://fetchrev.com
+**API surface.** Hownd operates a partner-gated REST API — the **Hownd Partner API** at
+`https://partner-api.hownd.com` — which lets approved partners manage Subscribers on behalf of Hownd
+merchants. It is authenticated with OAuth 2.0 client credentials against the company's own Auth0
+tenant (`https://hownd.auth0.com/oauth/token`, audience `https://partner-api.hownd.com`) and scoped
+per merchant with an `X-Tenant-Id` header. There is **no OpenAPI, no API reference, and no developer
+portal**; the only public documentation of the API is the company's own example repository at
+[LocBoxLabs/hownd-examples](https://github.com/LocBoxLabs/hownd-examples), last committed 2022-07-20.
+Credentials and Tenant IDs are issued by Hownd to approved partners, so the contract itself cannot be
+read by an integrator evaluating the platform.
+
+The one integration surface a merchant can self-serve is a per-account JavaScript popup embed served
+from `app.locbox.com/website_plugins/lb-<token>.js`.
+
+Backed by: 500-global — https://hownd.com

@@ -1,0 +1,88 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/LocBoxLabs/hownd-examples
+api: Hownd Partner API
+note: >-
+  Hownd publishes no OpenAPI and no API reference page, so nothing here is
+  derived from a spec. Every entry below is either transcribed from the
+  company's own first-party example repository or recorded as undocumented.
+  Undocumented is a real finding, not a gap to fill by inference.
+authentication:
+  style: oauth2-client-credentials
+  header: 'Authorization: Bearer [token]'
+  token_endpoint: https://hownd.auth0.com/oauth/token
+  audience: https://partner-api.hownd.com
+  detail: authentication/locbox-labs-authentication.yml
+multi_tenancy:
+  documented: true
+  mechanism: header
+  header: X-Tenant-Id
+  value: issued by Hownd, one per Hownd customer (merchant/business)
+  rationale_quote: >-
+    "Arguably the Tenant ID could be used in the HTTP path. Since it is security
+    related, a header felt more appropriate."
+  note: >-
+    Tenant scoping is the defining convention of this API - a partner holds one
+    credential set and switches merchant context per request via this header.
+content_type:
+  request: application/json
+  response: application/json
+  documented: true
+idempotency:
+  supported: unknown
+  documented: false
+  note: >-
+    No idempotency key, header, or retry-safety contract is documented anywhere
+    on Hownd's public surface. Subscriber creation is a write operation with no
+    published deduplication guarantee. No Idempotency pointer is emitted for
+    this provider.
+pagination:
+  documented: false
+  note: No list endpoints, page parameters, or cursor semantics are published.
+field_expansion:
+  documented: false
+metadata:
+  documented: false
+request_tracing:
+  documented: false
+  note: No request-id or correlation header is documented.
+versioning:
+  scheme: unknown
+  documented: false
+  note: >-
+    Neither the host, the example code, nor the README names a version segment,
+    version header, or date-based version train. The base URL is the bare host
+    https://partner-api.hownd.com.
+error_envelope:
+  documented: false
+  note: >-
+    No error catalog, status-code table, or error body shape is published. The
+    only observed response from the host is the Go net/http default
+    "404 page not found" in text/plain for unrouted paths.
+rate_limiting:
+  documented: false
+  detail: rate-limits/locbox-labs-rate-limits.yml
+resources:
+  documented:
+  - name: Subscribers
+    operations_documented:
+    - description: Create a subscriber on behalf of a Hownd customer
+      required_fields: [email address]
+      optional_fields: [first name, last name, phone number]
+      path: not published
+      method: not published
+    note: >-
+      The README names the Subscribers resource and its field contract but does
+      not publish the HTTP method or path. Probes of /subscribers and
+      /v1/subscribers on partner-api.hownd.com returned 404, so the route is not
+      guessable and is deliberately not recorded here.
+cross_links:
+  authentication: authentication/locbox-labs-authentication.yml
+  conformance: conformance/locbox-labs-conformance.yml
+  lifecycle: lifecycle/locbox-labs-lifecycle.yml
+  rate_limits: rate-limits/locbox-labs-rate-limits.yml
+  well_known: well-known/locbox-labs-well-known.yml
+x-evidence:
+- {url: 'https://github.com/LocBoxLabs/hownd-examples', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://partner-api.hownd.com/subscribers', http_status: 404, fetched: '2026-08-13'}
+- {url: 'https://partner-api.hownd.com/v1/subscribers', http_status: 404, fetched: '2026-08-13'}
