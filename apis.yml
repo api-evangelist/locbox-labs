@@ -53,6 +53,19 @@ tags:
 - Loyalty
 - Guest WiFi
 - Family Entertainment
+- Restaurant
+tags_raw:
+- Company
+- Marketing
+- Promotions
+- Local Marketing
+- Small Business
+- Automation
+- Coupons
+- Email Marketing
+- Loyalty
+- Guest WiFi
+- Family Entertainment
 - Restaurants
 apis:
 - name: Hownd Partner API
