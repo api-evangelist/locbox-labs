@@ -64,21 +64,105 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-LocBox Labs is the engineering identity behind Hownd, Inc. (formerly FetchRev, originally LocBox), a
-Tempe, Arizona automated promotions and local-merchant marketing platform. It was surfaced as a
-500 Global portfolio company and added to the API Evangelist network.
+LocBox Labs is the engineering identity behind Hownd, Inc. (formerly FetchRev, originally LocBox), a Tempe, Arizona automated promotions and local-merchant marketing platform that helps restaurants, health and beauty businesses, family entertainment centers, attractions and retail merchants generate new and repeat customers. The platform runs automated marketing across website popups, email drip and birthday campaigns, social media, buy-now promos, gift cards, a promo discovery portal, the MyHownd consumer mobile app, and guest-WiFi capture, billed at a flat monthly fee plus a share of each transaction. Merchants work in the Hownd app at hownd.app, with the legacy FetchRev merchant application still served at app.locbox.com. Hownd operates a partner-gated REST API at partner-api.hownd.com that lets approved partners manage subscribers on behalf of Hownd merchants; it is authenticated with OAuth 2.0 client-credentials against the company's Auth0 tenant and scoped per merchant with an X-Tenant-Id header. No OpenAPI, public API reference, or developer portal is published for it — the only public documentation is the first-party example repository in the company's LocBoxLabs GitHub org.
 
-**API surface.** Hownd operates a partner-gated REST API — the **Hownd Partner API** at
-`https://partner-api.hownd.com` — which lets approved partners manage Subscribers on behalf of Hownd
-merchants. It is authenticated with OAuth 2.0 client credentials against the company's own Auth0
-tenant (`https://hownd.auth0.com/oauth/token`, audience `https://partner-api.hownd.com`) and scoped
-per merchant with an `X-Tenant-Id` header. There is **no OpenAPI, no API reference, and no developer
-portal**; the only public documentation of the API is the company's own example repository at
-[LocBoxLabs/hownd-examples](https://github.com/LocBoxLabs/hownd-examples), last committed 2022-07-20.
-Credentials and Tenant IDs are issued by Hownd to approved partners, so the contract itself cannot be
-read by an integrator evaluating the platform.
+**Areas:** Company · Marketing · Promotions · Local Marketing · Small Business · Automation · Coupons · Email Marketing · Loyalty · Guest WiFi · Family Entertainment · Restaurant
 
-The one integration surface a merchant can self-serve is a per-account JavaScript popup embed served
-from `app.locbox.com/website_plugins/lb-<token>.js`.
+## LocBox Labs on APIs.io
 
-Backed by: 500-global — https://hownd.com
+Everything profiled for LocBox Labs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/locbox-labs/](https://apis.io/providers/locbox-labs/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Hownd Partner API](https://apis.io/apis/locbox-labs/hownd-partner-api/) — A secured REST API that lets an approved Hownd partner manage Subscribers on behalf of Hownd customers (merchants and businesses). Partners are issued OAuth…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Locbox Labs Authentication](https://apis.io/security/locbox-labs/locbox-labs-authentication/)
+- [Locbox Labs Domain Security](https://apis.io/security/locbox-labs/locbox-labs-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Locbox Labs Plans Pricing](https://apis.io/plans/locbox-labs/locbox-labs-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Locbox Labs Rate Limits](https://apis.io/rate-limits/locbox-labs/locbox-labs-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://hownd.com)
+- [Documentation](https://hownd.com/knowledge-base/)
+- [Getting started](https://hownd.com/quickstart/)
+- [Pricing](https://hownd.com/pricing/)
+- [Support](https://hownd.com/contact/)
+- [Blog](https://hownd.com/blog/)
+- [Compliance](https://hownd.com/data-protection-addendum/)
+- [Terms of service](https://hownd.com/terms-of-service/)
+- [Privacy policy](https://hownd.com/privacy-policy/)
+- [GitHub](https://github.com/LocBoxLabs)
+
+## API Evangelist rating
+
+**Kin Score 33.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 67.1 |
+
+**Agent readiness 17.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/locbox-labs/](https://apis.io/providers/locbox-labs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for LocBox Labs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/locbox-labs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
